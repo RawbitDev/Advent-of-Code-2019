@@ -13,22 +13,21 @@ int fuelCalc(int mass) {
 }
 
 int main(int argc, char *argv[]) {
+    string file_path = "input.txt";
     if(argc > 1) {
-        string file_path = argv[1];
-        ifstream file(file_path);
-        if (file) {
-            int fuel = 0;
-            string line = "";
-            while (getline(file, line)) {
-                int mass = stoi(line);
-                fuel += fuelCalc(mass);
-            }
-            cout << "Required fuel: " << fuel << endl;
-        } else {
-            cerr << "Cannot open given file!" << endl;
+        file_path = argv[1];
+    }
+    ifstream file(file_path);
+    if (file) {
+        int fuel = 0;
+        string line = "";
+        while (getline(file, line)) {
+            int mass = stoi(line);
+            fuel += fuelCalc(mass);
         }
+        cout << "Required fuel: " << fuel << endl;
     } else {
-        cerr << "Missing file parameter!" << endl;
+        cerr << "Cannot open given file!" << endl;
     }
     return 0;
 }
